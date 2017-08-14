@@ -13,6 +13,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -116,13 +117,13 @@ public class MainActivity extends AppCompatActivity {
 
 
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(txt);
-                Pattern pattern = Pattern.compile("\\[(\\S+?)\\]");//匹配[xx]的字符串
+                Pattern pattern = Pattern.compile("\\[p](\\S+?)\\[/p]");//匹配[xx]的字符串
                 Matcher matcher = pattern.matcher(txt);
                 while (matcher.find()) {
                     int start = matcher.start();
                     int end = matcher.end();
                     String group = matcher.group();
-                    group = group.substring(1, group.length() - 1);
+                    group = group.substring(3, group.length() - 4);
                     FileInputStream fis = null;
                     Bitmap bitmap = FileUtils.readBitmapSd("/sdcard/niannian/002/" + group + ".png");
                     ImageSpan imageSpan = new ImageSpan(MainActivity.this, bitmap);
@@ -174,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                         ImageSpan imageSpan = new ImageSpan(MainActivity.this, mBitmapResult);
                         //创建一个SpannableString对象，以便插入用ImageSpan对象封装的图像
                         full_name = LAST_NAME + first_name;
-                        String s = "[" + full_name + "]";
+                        String s = "[p]" + full_name + "[/p]";
                         first_name++;
                         SpannableString spannableString = new SpannableString(s);
                         //  用ImageSpan对象替换face
