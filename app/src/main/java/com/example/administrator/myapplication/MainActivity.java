@@ -13,7 +13,6 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -148,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    CompressUtil.unzip("/sdcard/niannian/002.zip","/sdcard/niannian/003",null);
+                    CompressUtil.unzip("/sdcard/niannian/002.zip","/sdcard/niannian/",null);
                 } catch (ZipException e) {
                     e.printStackTrace();
                 }
